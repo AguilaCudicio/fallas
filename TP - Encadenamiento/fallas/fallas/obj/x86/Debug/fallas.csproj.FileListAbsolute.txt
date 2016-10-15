@@ -1,0 +1,4 @@
+c:\users\uriel\documents\visual studio 2010\Projects\fallas\fallas\bin\Debug\fallas.exe
+c:\users\uriel\documents\visual studio 2010\Projects\fallas\fallas\bin\Debug\fallas.pdb
+c:\users\uriel\documents\visual studio 2010\Projects\fallas\fallas\obj\x86\Debug\fallas.exe
+c:\users\uriel\documents\visual studio 2010\Projects\fallas\fallas\obj\x86\Debug\fallas.pdb

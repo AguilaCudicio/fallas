@@ -2,7 +2,7 @@
 from Rule import * 
 from IfContains import * 
 
-print "Hello, Python!"
+
 
 "Los hechos van a ser strings"
 facts=['p','q','r','s'];

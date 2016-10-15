@@ -11,4 +11,4 @@ class Rule(object):
      
      @abc.abstractmethod
      def calculate(self,facts):
-         print "Soy abstracto, no instanciarme"
+         print "Soy abstracta, no me instancies :("

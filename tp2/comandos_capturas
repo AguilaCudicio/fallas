@@ -1,0 +1,67 @@
+Libros que leyó Martin Fernandez (id=1)
+
+SELECT name FROM ( SELECT EXPAND( OUT('leyo') ) FROM User WHERE id=01 )
+
+Devuelve 
+
+El retrato de Dorian Gray
+Los hermanos Karamzov 
+
+Libros que las personas a las que Martin sigue leyeron
+SELECT id FROM ( SELECT EXPAND( OUT('leyo') ) FROM User WHERE id in 
+(
+SELECT id FROM ( SELECT EXPAND( OUT('sigue_a') ) FROM User WHERE id=01 )
+)
+)
+
+
+Libros que las personas a las que Martin sigue leyeron pero que martin no leyó
+
+SELECT name FROM Book WHERE id not IN (
+SELECT id FROM ( SELECT EXPAND( OUT('leyo') ) FROM User WHERE id=01 ) )
+AND id IN
+(
+SELECT id FROM ( SELECT EXPAND( OUT('leyo') ) FROM User WHERE id in 
+(
+SELECT id FROM ( SELECT EXPAND( OUT('sigue_a') ) FROM User WHERE id=01 )
+) ) )
+
+Esto devuelve:
+
+*El fantasma de la Opera
+*Crimen y castigo
+
+
+
+Autores que Martín leyó:
+SELECT name FROM ( SELECT EXPAND(   IN('autor_de') )  FROM Book WHERE id in  (
+SELECT id FROM ( SELECT EXPAND( OUT('leyo') ) FROM User WHERE id=01 )
+)
+)
+
+Esto devuelve:
+
+*Oscar Wilde
+*Fiodor Dostoyevski
+
+
+
+Libros que Martín no leyó de autores que conoce
+
+
+
+
+SELECT name FROM Book WHERE id IN (
+SELECT id FROM ( SELECT EXPAND( OUT('autor_de') ) FROM Author WHERE id in
+(
+SELECT id FROM ( SELECT EXPAND(   IN('autor_de') )  FROM Book WHERE id in  (
+SELECT id FROM ( SELECT EXPAND( OUT('leyo') ) FROM User WHERE id=01 )
+)
+)
+)
+) ) AND id NOT IN ( SELECT id FROM (SELECT EXPAND( OUT('leyo') ) FROM User WHERE id=01) )
+
+Esto devuelve:
+
+* El Principe feliz
+* Crimen y Castigo

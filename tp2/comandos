@@ -1,0 +1,62 @@
+CREATE DATABASE PLOCAL:../databases/redlib1 root root
+
+create user root IDENTIFIED BY root ROLE Admin
+
+
+CREATE CLASS User EXTENDS V 
+CREATE PROPERTY User.id integer 
+CREATE PROPERTY User.name String
+CREATE PROPERTY User.age integer
+CREATE PROPERTY User.email String
+
+CREATE CLASS Author EXTENDS V 
+CREATE PROPERTY Author.id integer 
+CREATE PROPERTY Author.name String
+
+CREATE CLASS Book EXTENDS V 
+CREATE PROPERTY Book.id integer 
+CREATE PROPERTY Book.name String
+
+
+
+CREATE VERTEX User SET id= 01, name= 'Martin Fernandez',age=25,email='mgmail.com'
+CREATE VERTEX User SET id=02,name='Elena Aguilar',age=20,email='agmail.com'
+CREATE VERTEX User SET id=03,name='Juan Perez',age=35,email='jgmail.com'
+
+CREATE VERTEX Author SET id=01,name='Fiodor Dostoyevski'
+CREATE VERTEX Author SET id=02,name='Gaston Leroux'
+CREATE VERTEX Author SET id=03,name='Oscar Wilde'
+
+CREATE VERTEX Book SET id=01,name='El retrato de Dorian Gray'
+CREATE VERTEX Book SET id=02,name='El fantasma de la Opera'
+CREATE VERTEX Book SET id=03,name='Crimen y castigo'
+CREATE VERTEX Book SET id=04,name='Los hermanos Karamzov'
+CREATE VERTEX Book SET id=05,name='El principe feliz'
+
+
+
+CREATE CLASS Sigue_a EXTENDS E
+CREATE CLASS Leyo EXTENDS E
+CREATE CLASS Autor_de EXTENDS E
+
+
+
+CREATE EDGE Sigue_a FROM ( SELECT FROM User WHERE id=01 ) TO ( SELECT FROM User WHERE id=02 )
+CREATE EDGE Sigue_a FROM ( SELECT FROM User WHERE id=01 ) TO ( SELECT FROM User WHERE id=03 )
+
+
+
+CREATE EDGE Leyo FROM ( SELECT FROM User WHERE id=01 ) TO ( SELECT FROM Book WHERE id=01 )
+CREATE EDGE Leyo FROM ( SELECT FROM User WHERE id=01 ) TO ( SELECT FROM Book WHERE id=04 )
+CREATE EDGE Leyo FROM ( SELECT FROM User WHERE id=02 ) TO ( SELECT FROM Book WHERE id=04 )
+CREATE EDGE Leyo FROM ( SELECT FROM User WHERE id=03 ) TO ( SELECT FROM Book WHERE id=01 )
+CREATE EDGE Leyo FROM ( SELECT FROM User WHERE id=03 ) TO ( SELECT FROM Book WHERE id=02 )
+CREATE EDGE Leyo FROM ( SELECT FROM User WHERE id=03 ) TO ( SELECT FROM Book WHERE id=03 )
+
+
+
+CREATE EDGE Autor_de FROM ( SELECT FROM Author WHERE id=01 ) TO ( SELECT FROM Book WHERE id=03 )
+CREATE EDGE Autor_de FROM ( SELECT FROM Author WHERE id=01 ) TO ( SELECT FROM Book WHERE id=04 )
+CREATE EDGE Autor_de FROM ( SELECT FROM Author WHERE id=02 ) TO ( SELECT FROM Book WHERE id=02 )
+CREATE EDGE Autor_de FROM ( SELECT FROM Author WHERE id=03 ) TO ( SELECT FROM Book WHERE id=01 )
+CREATE EDGE Autor_de FROM ( SELECT FROM Author WHERE id=03 ) TO ( SELECT FROM Book WHERE id=05 )

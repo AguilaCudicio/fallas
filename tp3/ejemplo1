@@ -1,0 +1,131 @@
+0.504::masculino.
+0.005::asperger_masculino.
+0.001::asperger_femenino.
+
+0.900::alteracion_motriz_con_asperger.
+0.100::alteracion_motriz_sin_asperger.
+
+0.980::obsesion_con_asperger.
+0.120::obsesion_sin_asperger.
+
+0.950::autoestimulante_con_asperger.
+0.150::autoestimulante_sin_asperger.
+
+0.999::des_aprendizaje_noverbal_con_asperger.
+0.015::des_aprendizaje_noverbal_sin_asperger.
+
+1.000::dificultad_socializar_asperger_desordenAprendizajeNoVerbal.
+0.900::dificultad_socializar_solo_desordenAprendizajeNoVerbal.
+0.900::dificultad_socializar_solo_asperger.
+0.100::dificultad_socializar_sin_asperger_desordenAprendizajeNoVerbal.
+
+1.000::malacomunicacion_asperger_desordenAprendizajeNoVerbal.
+1.000::malacomunicacion_solo_desordenAprendizajeNoVerbal.
+0.950::malacomunicacion_solo_asperger.
+0.020::malacomunicacion_sin_asperger_desordenAprendizajeNoVerbal.
+
+0.281::deficit_atencion_con_asperger.
+0.040::deficit_atencion_sin_asperger.
+
+1.000::periodo_atencion_breve_con_deficitatencion.
+0.010::periodo_atencion_breve_sin_deficitatencion.
+
+1.000::inquietudmotora_con_deficitatencion.
+0.015::inquietudmotora_sin_deficitatencion.
+
+1.000::distraccion_con_deficitatencion.
+0.015::distraccion_sin_deficitatencion.
+
+0.540::depresion_con_asperger.
+0.070::depresion_sin_asperger.
+
+1.000::infelicidad_con_depresion.
+0.200::infelicidad_sin_depresion.
+
+1.000::anhedonia_con_depresion.
+0.015::anhedonia_sin_depresion.
+
+0.999::ansiedad_con_obsesivocompulsivo_depresion.
+0.900::ansiedad_solo_depresion.
+0.900::ansiedad_solo_obsesivocompulsivo.
+0.180::ansiedad_sin_obsesivocompulsivo_depresion.
+
+0.140::obsesivocompulsivo_con_asperger.
+0.012::obsesivocompulsivo_sin_asperger.
+
+1.000::conductasrepetitivas_con_obsesivocompulsivo.
+0.014::conductasrepetitivas_sin_obsesivocompulsivo.
+
+0.780::inquietud_con_obsesivocompulsivo.
+0.020::inquietud_sin_obsesivocompulsivo.
+
+
+asperger :- asperger_masculino, masculino.
+asperger :- asperger_femenino, \+masculino.
+
+alteracion_motriz :- alteracion_motriz_con_asperger, asperger.
+alteracion_motriz :- alteracion_motriz_sin_asperger, \+asperger.
+
+obsesion_por_ciertos_temas :- obsesion_con_asperger, asperger.
+obsesion_por_ciertos_temas :- obsesion_sin_asperger, \+asperger.
+
+comportamiento_autoestimulante :- autoestimulante_con_asperger, asperger.
+comportamiento_autoestimulante :- autoestimulante_sin_asperger, \+asperger.
+
+des_aprendizaje_noverbal :- des_aprendizaje_noverbal_con_asperger, asperger.
+des_aprendizaje_noverbal :- des_aprendizaje_noverbal_sin_asperger, \+asperger.
+
+dificultad_socializar :- dificultad_socializar_asperger_desordenAprendizajeNoVerbal, asperger, des_aprendizaje_noverbal.
+dificultad_socializar :- dificultad_socializar_solo_desordenAprendizajeNoVerbal, asperger, \+des_aprendizaje_noverbal.
+dificultad_socializar :- dificultad_socializar_solo_asperger, \+asperger, des_aprendizaje_noverbal.
+dificultad_socializar :- dificultad_socializar_sin_asperger_desordenAprendizajeNoVerbal, \+asperger, \+des_aprendizaje_noverbal.
+
+malacomunicacion_noverbal :- malacomunicacion_asperger_desordenAprendizajeNoVerbal, asperger, des_aprendizaje_noverbal.
+malacomunicacion_noverbal :- malacomunicacion_solo_desordenAprendizajeNoVerbal, asperger, \+des_aprendizaje_noverbal.
+malacomunicacion_noverbal :- malacomunicacion_solo_asperger, \+asperger, des_aprendizaje_noverbal.
+malacomunicacion_noverbal :- malacomunicacion_sin_asperger_desordenAprendizajeNoVerbal, \+asperger, \+des_aprendizaje_noverbal.
+
+deficit_atencion :- deficit_atencion_con_asperger, asperger.
+deficit_atencion :- deficit_atencion_sin_asperger, \+asperger.
+
+periodo_atencion_breve :- periodo_atencion_breve_con_deficitatencion, deficit_atencion.
+periodo_atencion_breve :- periodo_atencion_breve_sin_deficitatencion, \+deficit_atencion.
+
+inquietud_motora :- inquietudmotora_con_deficitatencion, deficit_atencion.
+inquietud_motora :- inquietudmotora_sin_deficitatencion, \+deficit_atencion.
+
+distraccion :- distraccion_con_deficitatencion, deficit_atencion.
+distraccion :- distraccion_sin_deficitatencion, \+deficit_atencion.
+
+depresion :- depresion_con_asperger, asperger.
+depresion :- depresion_sin_asperger, \+asperger.
+
+infelicidad :- infelicidad_con_depresion, depresion.
+infelicidad :- infelicidad_sin_depresion, \+depresion.
+
+anhedonia :- anhedonia_con_depresion, depresion.
+anhedonia :- anhedonia_sin_depresion, \+depresion.
+
+desorden_obsesivo_compulsivo :- obsesivocompulsivo_con_asperger, asperger.
+desorden_obsesivo_compulsivo :- obsesivocompulsivo_sin_asperger, \+asperger.
+
+ansiedad :- ansiedad_con_obsesivocompulsivo_depresion, desorden_obsesivo_compulsivo, depresion.
+ansiedad :- ansiedad_solo_depresion, \+desorden_obsesivo_compulsivo, depresion.
+ansiedad :- ansiedad_solo_obsesivocompulsivo, desorden_obsesivo_compulsivo, \+depresion.
+ansiedad :- ansiedad_sin_obsesivocompulsivo_depresion, \+desorden_obsesivo_compulsivo, \+depresion.
+
+conductasrepetitivas :- conductasrepetitivas_con_obsesivocompulsivo, desorden_obsesivo_compulsivo.
+conductasrepetitivas :- conductasrepetitivas_sin_obsesivocompulsivo, \+desorden_obsesivo_compulsivo.
+
+inquietud :- inquietud_con_obsesivocompulsivo, desorden_obsesivo_compulsivo.
+inquietud :- inquietud_sin_obsesivocompulsivo,\+desorden_obsesivo_compulsivo.
+
+
+
+evidence(inquietud,true).
+evidence(conductasrepetitivas,true).
+evidence(comportamiento_autoestimulante,true).
+
+
+
+query(asperger).

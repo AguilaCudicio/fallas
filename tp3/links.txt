@@ -1,0 +1,3 @@
+https://dtai.cs.kuleuven.be/problog/tutorial/basic/02_bayes.html
+
+https://dtai.cs.kuleuven.be/problog/editor.html
